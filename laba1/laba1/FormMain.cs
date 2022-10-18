@@ -119,6 +119,7 @@ namespace laba1
             User user = null;
             bool authenticated = false;
             int wrongPasswordCount = 0;
+            int tryPasswordCount = 3;
             // Даём три попытки ввода пароля
             do
             {
@@ -164,12 +165,18 @@ namespace laba1
                     authenticated = userService.CheckPassword(user.Password, password);
                     if (!authenticated)
                     {
-                        MessageBox.Show(this, "Неправильный пароль", "Ошибка", 
+                        MessageBox.Show(this, $"Неправильный пароль. Осталось попыток: {tryPasswordCount}", "Ошибка",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tryPasswordCount--;
                         wrongPasswordCount++;
                         // При трехкратном вводе неверного пароля работа программы должна завершаться
                         if (wrongPasswordCount >= 3)
+                        {
+                            MessageBox.Show(this, "Попытки авторизации закончены.", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                             return false;
+                        }   
                     }
                 }
             } while (user == null || !authenticated);

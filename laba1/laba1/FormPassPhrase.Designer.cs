@@ -49,6 +49,7 @@
             this.textBoxPassPhrase.Name = "textBoxPassPhrase";
             this.textBoxPassPhrase.Size = new System.Drawing.Size(440, 20);
             this.textBoxPassPhrase.TabIndex = 1;
+            this.textBoxPassPhrase.UseSystemPasswordChar = true;
             // 
             // buttonOk
             // 
